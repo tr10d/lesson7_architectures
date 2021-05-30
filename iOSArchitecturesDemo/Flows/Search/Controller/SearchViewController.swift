@@ -68,24 +68,24 @@ final class SearchViewController: UIViewController {
     searchService.getApps(forQuery: query) { [weak self] result in
       guard let self = self else { return }
       self.throbber(show: false)
-      result
-        .withValue { apps in
-          guard !apps.isEmpty else {
-            self.searchResults = []
-            self.showNoResults()
-            return
-          }
-          self.hideNoResults()
-          self.searchResults = apps
-          
-          self.searchView.tableView.isHidden = false
-          self.searchView.tableView.reloadData()
-          
-          self.searchView.searchBar.resignFirstResponder()
+      switch result {
+      case .success(let apps):
+        guard !apps.isEmpty else {
+          self.searchResults = []
+          self.showNoResults()
+          return
         }
-        .withError {
-          self.showError(error: $0)
-        }
+        self.hideNoResults()
+        self.searchResults = apps
+        
+        self.searchView.tableView.isHidden = false
+        self.searchView.tableView.reloadData()
+        
+        self.searchView.searchBar.resignFirstResponder()
+
+      case .failure(let error):
+        self.showError(error: error)
+      }
     }
   }
 }
