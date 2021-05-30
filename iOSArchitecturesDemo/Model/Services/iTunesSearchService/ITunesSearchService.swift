@@ -6,6 +6,7 @@
 //  Copyright © 2018 ekireev. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
 final class ITunesSearchService {
