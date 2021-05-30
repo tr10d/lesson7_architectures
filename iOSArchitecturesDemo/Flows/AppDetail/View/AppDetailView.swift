@@ -41,7 +41,7 @@ final class AppDetailView: UIView {
 // MARK: - Constants
 
 extension AppDetailView {
-  enum Constants {
+  private enum Constants {
     enum Image {
       static let backgroundColor = UIColor.gray.withAlphaComponent(0.5)
       static let cornerRadius: CGFloat = 10.0

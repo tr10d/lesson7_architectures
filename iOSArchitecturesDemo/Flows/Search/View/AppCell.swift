@@ -60,7 +60,7 @@ final class AppCell: UITableViewCell {
 // MARK: - Constants
 
 extension AppCell {
-  enum Constants {
+  private enum Constants {
     enum Edge {
       static let offsetTop = 4
       static let offsetLet = 12

@@ -15,13 +15,8 @@ final class SearchViewController: UIViewController {
   private var searchView: SearchView {
     return self.view as! SearchView
   }
-  
   private let searchService = ITunesSearchService()
   private var searchResults = [ITunesApp]()
-  
-  private struct Constants {
-    static let reuseIdentifier = "reuseId"
-  }
   
   // MARK: - Lifecycle
   
@@ -32,16 +27,16 @@ final class SearchViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationController?.navigationBar.prefersLargeTitles = true
-    self.searchView.searchBar.delegate = self
-    self.searchView.tableView.register(AppCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
-    self.searchView.tableView.delegate = self
-    self.searchView.tableView.dataSource = self
+    navigationController?.navigationBar.prefersLargeTitles = true
+    searchView.searchBar.delegate = self
+    searchView.tableView.register(AppCell.self, forCellReuseIdentifier: Constants.reuseIdentifier)
+    searchView.tableView.delegate = self
+    searchView.tableView.dataSource = self
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    self.throbber(show: false)
+    throbber(show: false)
   }
   
   // MARK: - Private
@@ -54,23 +49,23 @@ final class SearchViewController: UIViewController {
     let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
     let actionOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
     alert.addAction(actionOk)
-    self.present(alert, animated: true, completion: nil)
+    present(alert, animated: true, completion: nil)
   }
   
   private func showNoResults() {
-    self.searchView.emptyResultView.isHidden = false
+    searchView.emptyResultView.isHidden = false
   }
   
   private func hideNoResults() {
-    self.searchView.emptyResultView.isHidden = true
+    searchView.emptyResultView.isHidden = true
   }
   
   private func requestApps(with query: String) {
-    self.throbber(show: true)
-    self.searchResults = []
-    self.searchView.tableView.reloadData()
+    throbber(show: true)
+    searchResults = []
+    searchView.tableView.reloadData()
     
-    self.searchService.getApps(forQuery: query) { [weak self] result in
+    searchService.getApps(forQuery: query) { [weak self] result in
       guard let self = self else { return }
       self.throbber(show: false)
       result
@@ -92,6 +87,14 @@ final class SearchViewController: UIViewController {
           self.showError(error: $0)
         }
     }
+  }
+}
+
+//MARK: - Constants
+
+extension SearchViewController {
+  private enum Constants {
+    static let reuseIdentifier = "reuseId"
   }
 }
 
@@ -137,6 +140,6 @@ extension SearchViewController: UISearchBarDelegate {
       searchBar.resignFirstResponder()
       return
     }
-    self.requestApps(with: query)
+    requestApps(with: query)
   }
 }

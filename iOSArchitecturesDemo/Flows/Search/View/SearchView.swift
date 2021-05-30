@@ -57,7 +57,7 @@ final class SearchView: UIView {
 // MARK: - Constants
 
 extension SearchView {
-  enum Constants {
+  private enum Constants {
     static let backgroundColor: UIColor = .white
     
     enum Table {
