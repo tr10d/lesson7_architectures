@@ -7,57 +7,68 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AppDetailView: UIView {
-    
-    // MARK: - Subviews
-    
+  
+  // MARK: - Subviews
+  
+  private(set) lazy var imageView: UIImageView = {
     let imageView = UIImageView()
-    let throbber = UIActivityIndicatorView(style: .gray)
-    
-    // MARK: - Init
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.configureUI()
+    imageView.backgroundColor = Constants.Image.backgroundColor
+    imageView.layer.cornerRadius = Constants.Image.cornerRadius
+    imageView.layer.masksToBounds = true
+    return imageView
+  }()
+  private(set) lazy var throbber: UIActivityIndicatorView = {
+    let activityIndicatorView = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
+    return activityIndicatorView
+  }()
+  
+  // MARK: - Init
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    configureUI()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    configureUI()
+  }
+}
+  
+// MARK: - Constants
+
+extension AppDetailView {
+  enum Constants {
+    enum Image {
+      static let backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+      static let cornerRadius: CGFloat = 10.0
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.configureUI()
+    enum ActivityIndicator {
+      static let style: UIActivityIndicatorView.Style = .gray
     }
-    
-    // MARK: - UI
-    
-    private func configureUI() {
-        self.backgroundColor = .white
-        self.addImageView()
-        self.addImageViewThrobber()
-        self.setupConstraints()
+  }
+}
+
+// MARK: - UI
+
+extension AppDetailView {
+  private func configureUI() {
+    backgroundColor = .white
+    addSubview(imageView)
+    imageView.addSubview(throbber)
+    setupConstraints()
+  }
+  
+  private func setupConstraints() {
+    imageView.snp.makeConstraints { make in
+      make.width.height.equalTo(100)
+      make.centerX.centerY.equalToSuperview()
     }
-    
-    private func addImageView() {
-        self.imageView.translatesAutoresizingMaskIntoConstraints = false
-        self.imageView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        self.imageView.layer.cornerRadius = 10.0
-        self.imageView.layer.masksToBounds = true
-        self.addSubview(self.imageView)
+    throbber.snp.makeConstraints { make in
+      make.centerX.centerY.equalToSuperview()
     }
-    
-    private func addImageViewThrobber() {
-        self.throbber.translatesAutoresizingMaskIntoConstraints = false
-        self.imageView.addSubview(self.throbber)
-    }
-    
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            self.imageView.widthAnchor.constraint(equalToConstant: 100.0),
-            self.imageView.heightAnchor.constraint(equalToConstant: 100.0),
-            self.imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            
-            self.throbber.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.throbber.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-            ])
-    }
+  }
 }
