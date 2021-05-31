@@ -38,6 +38,8 @@ final class ITunesSearchService {
     parameters[Parameter.regionCode] = regionCode
     parameters[Parameter.mediaType] = MediaType.apps.rawValue
     
+    decoder.dateDecodingStrategy = .iso8601
+    
     let request = WebRequest(method: .get, url: baseUrl, parameters: parameters)
     
     networkManager.dataRequest(request) { [weak self] result in

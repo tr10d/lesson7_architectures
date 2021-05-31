@@ -12,7 +12,7 @@ import SnapKit
 final class AppDetailViewController: UIViewController {
   let app: ITunesApp
   lazy var headerViewController = AppDetailHeaderViewController(app: self.app)
-  lazy var descriptionViewController = UIViewController()
+  lazy var descriptionViewController = AppDetailDescriptionViewController(app: self.app)
 
   init(app: ITunesApp) {
     self.app = app
@@ -31,11 +31,11 @@ final class AppDetailViewController: UIViewController {
 
 extension AppDetailViewController {
   private func configureUI() {
-    self.view.backgroundColor = .white
-    self.navigationController?.navigationBar.tintColor = UIColor.white;
-    self.navigationItem.largeTitleDisplayMode = .never
-    self.addHeaderViewController()
-    self.addDescriptionViewController()
+    view.backgroundColor = GlobalConstants.Color.background
+    navigationController?.navigationBar.tintColor = GlobalConstants.Color.background;
+    navigationItem.largeTitleDisplayMode = .never
+    addHeaderViewController()
+    addDescriptionViewController()
   }
   
   private func addHeaderViewController() {
@@ -50,14 +50,12 @@ extension AppDetailViewController {
   }
   
   private func addDescriptionViewController() {
-    // TODO: ДЗ, сделать другие сабмодули
-    
     addChild(descriptionViewController)
     view.addSubview(descriptionViewController.view)
     descriptionViewController.didMove(toParent: self)
     
     descriptionViewController.view.snp.makeConstraints { make in
-      make.top.equalTo(headerViewController.view)
+      make.top.equalTo(headerViewController.view.snp.bottom)
       make.left.right.equalToSuperview()
       make.height.equalTo(250)
     }

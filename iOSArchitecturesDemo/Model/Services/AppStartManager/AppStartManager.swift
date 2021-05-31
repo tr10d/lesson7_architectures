@@ -9,30 +9,62 @@
 import UIKit
 
 final class AppStartManager {
+  var window: UIWindow?
+
+  init(window: UIWindow?) {
+    self.window = window
+  }
+  
+  func start() {
+    let softwareVC = AppStartManagerFactory.softwareVC()
+    let musicVC = AppStartManagerFactory.musicVC()
+    let softwareNavigationVC = AppStartManagerFactory.navigationVC(title: GlobalConstants.Text.apps, image: GlobalConstants.Text.appsImageName, viewControllers: [softwareVC])
+    let musicNavigationVC = AppStartManagerFactory.navigationVC(title: GlobalConstants.Text.music, image: GlobalConstants.Text.musicImageName, viewControllers: [musicVC])
     
-    var window: UIWindow?
+    let tabBarController = AppStartManagerFactory.tabBarVC(viewControllers: [softwareNavigationVC, musicNavigationVC])
     
-    init(window: UIWindow?) {
-        self.window = window
-    }
-    
-    func start() {
-        let rootVC = SearchViewController()
-        rootVC.navigationItem.title = "Search via iTunes"
-        
-        let navVC = self.configuredNavigationController
-        navVC.viewControllers = [rootVC]
-        
-        window?.rootViewController = navVC
-        window?.makeKeyAndVisible()
-    }
-    
-    private lazy var configuredNavigationController: UINavigationController = {
-        let navVC = UINavigationController()
-        navVC.navigationBar.barTintColor = UIColor.varna
-        navVC.navigationBar.isTranslucent = false
-        navVC.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        return navVC
-    }()
+    window?.rootViewController = tabBarController
+    window?.makeKeyAndVisible()
+  }
 }
+
+class AppStartManagerFactory {
+  static func softwareVC() -> SearchViewController {
+    let presenter = SearchPresenter()
+    let vc = SearchViewController(presenter: presenter)
+    presenter.viewInput = vc
+    vc.navigationItem.title = GlobalConstants.Text.appsSearch
+    return vc
+  }
+  
+  static func musicVC() -> SearchMisicViewController {
+    let vc = SearchMisicViewController()
+    vc.navigationItem.title = GlobalConstants.Text.musicSearch
+    return vc
+  }
+
+  static func navigationVC(title: String, image: String, viewControllers: [UIViewController]) -> UINavigationController {
+    let vc = UINavigationController()
+    vc.navigationBar.barTintColor = .varna
+    vc.navigationBar.isTranslucent = false
+    vc.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: GlobalConstants.Color.background]
+    vc.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: GlobalConstants.Color.background]
+    vc.tabBarItem = tabBarItem(title: title, image: image)
+    vc.viewControllers = viewControllers
+    return vc
+  }
+  
+  static func tabBarVC(viewControllers: [UIViewController]) -> UITabBarController {
+    let tabBarController = UITabBarController()
+    tabBarController.viewControllers = viewControllers
+    return tabBarController
+  }
+  
+  static func tabBarItem(title: String, image: String) -> UITabBarItem {
+    let item = UITabBarItem()
+    item.title = title
+    item.image = UIImage(named: image)
+    return item
+  }
+}
+

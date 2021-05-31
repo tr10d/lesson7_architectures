@@ -16,20 +16,25 @@ final class AppCell: UITableViewCell {
   private(set) lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .black
-    label.font = Constants.Font.first
+    label.font = GlobalConstants.Font.subLarge
     return label
   }()
   private(set) lazy var subtitleLabel: UILabel = {
     let label = UILabel()
     label.textColor = .gray
-    label.font = Constants.Font.second
+    label.font = GlobalConstants.Font.subMedium
     return label
   }()
   private(set) lazy var ratingLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
-    label.font = Constants.Font.third
+    label.font = GlobalConstants.Font.small
     return label
+  }()
+  private(set) lazy var ratingStar: StarRatingView = {
+    let stackView = StarRatingView()
+    stackView.starColor = .lightGray
+    return stackView
   }()
   
   // MARK: - Init
@@ -54,6 +59,7 @@ final class AppCell: UITableViewCell {
     titleLabel.text = cellModel.title
     subtitleLabel.text = cellModel.subtitle
     ratingLabel.text = cellModel.rating
+    ratingStar.rating = cellModel.ratingForStar
   }
 }
 
@@ -66,12 +72,6 @@ extension AppCell {
       static let offsetLet = 12
       static let offsetRight = -40
     }
-    
-    enum Font {
-      static let first = UIFont.systemFont(ofSize: 16.0)
-      static let second = UIFont.systemFont(ofSize: 13.0)
-      static let third = UIFont.systemFont(ofSize: 12.0)
-    }
   }
 }
 
@@ -82,6 +82,7 @@ extension AppCell {
     addTitleLabel()
     addSubtitleLabel()
     addRatingLabel()
+    addRatingStar()
   }
   
   private func addTitleLabel() {
@@ -107,7 +108,15 @@ extension AppCell {
     ratingLabel.snp.makeConstraints { make in
       make.top.equalTo(subtitleLabel.snp.bottom).offset(Constants.Edge.offsetTop)
       make.left.equalToSuperview().offset(Constants.Edge.offsetLet)
-      make.right.equalToSuperview().offset(Constants.Edge.offsetRight)
+    }
+  }
+
+  private func addRatingStar() {
+    contentView.addSubview(ratingStar)
+    ratingStar.snp.makeConstraints { make in
+      make.centerY.equalTo(ratingLabel.snp.centerY)
+      make.left.equalTo(ratingLabel.snp.right).offset(Constants.Edge.offsetLet)
+//      make.height.equalTo(ratingLabel.snp.height)
     }
   }
 }

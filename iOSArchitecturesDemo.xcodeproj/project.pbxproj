@@ -11,6 +11,13 @@
 		854C904F2663B354003DA71A /* AppDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C904E2663B354003DA71A /* AppDetailHeaderViewController.swift */; };
 		8595724B2663921A0002BB00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8595724A2663921A0002BB00 /* Alamofire */; };
 		8595724E266399B60002BB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8595724D266399B60002BB00 /* SnapKit */; };
+		8599CCE22664FBFF006D0B85 /* SearchMisicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */; };
+		8599CCE4266560FC006D0B85 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE3266560FC006D0B85 /* SearchPresenter.swift */; };
+		8599CCE72665673D006D0B85 /* SearchViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE62665673D006D0B85 /* SearchViewProtocols.swift */; };
+		85F2FA64266412DB00E32622 /* AppDetailDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA63266412DB00E32622 /* AppDetailDescriptionViewController.swift */; };
+		85F2FA662664178000E32622 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA652664178000E32622 /* StarRatingView.swift */; };
+		85F2FA68266430A000E32622 /* AppDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA67266430A000E32622 /* AppDetailDescriptionView.swift */; };
+		85F2FA6B266435ED00E32622 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA6A266435ED00E32622 /* GlobalConstants.swift */; };
 		E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E1D2922034A3350011E01A /* AppDelegate.swift */; };
 		E0E1D2952034A3350011E01A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E1D2942034A3350011E01A /* SearchViewController.swift */; };
 		E0E1D29A2034A3350011E01A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E1D2992034A3350011E01A /* Assets.xcassets */; };
@@ -35,6 +42,13 @@
 /* Begin PBXFileReference section */
 		854C904C2663B1FF003DA71A /* AppDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderView.swift; sourceTree = "<group>"; };
 		854C904E2663B354003DA71A /* AppDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderViewController.swift; sourceTree = "<group>"; };
+		8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMisicViewController.swift; sourceTree = "<group>"; };
+		8599CCE3266560FC006D0B85 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		8599CCE62665673D006D0B85 /* SearchViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewProtocols.swift; sourceTree = "<group>"; };
+		85F2FA63266412DB00E32622 /* AppDetailDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailDescriptionViewController.swift; sourceTree = "<group>"; };
+		85F2FA652664178000E32622 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		85F2FA67266430A000E32622 /* AppDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailDescriptionView.swift; sourceTree = "<group>"; };
+		85F2FA6A266435ED00E32622 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		E0E1D28F2034A3350011E01A /* iOSArchitecturesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSArchitecturesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E1D2922034A3350011E01A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E1D2942034A3350011E01A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +85,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8599CCE526656715006D0B85 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8599CCE62665673D006D0B85 /* SearchViewProtocols.swift */,
+				8599CCE3266560FC006D0B85 /* SearchPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8599CCE826656838006D0B85 /* SearchMisic */ = {
+			isa = PBXGroup;
+			children = (
+				8599CCE926656842006D0B85 /* View */,
+			);
+			path = SearchMisic;
+			sourceTree = "<group>";
+		};
+		8599CCE926656842006D0B85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85F2FA69266435C100E32622 /* Stars */ = {
+			isa = PBXGroup;
+			children = (
+				85F2FA652664178000E32622 /* StarRatingView.swift */,
+			);
+			path = Stars;
+			sourceTree = "<group>";
+		};
 		E0E1D2862034A3350011E01A = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +150,8 @@
 			children = (
 				E0E1D2A62034A36C0011E01A /* Search */,
 				E0E1D2A72034A3780011E01A /* AppDetail */,
+				85F2FA69266435C100E32622 /* Stars */,
+				8599CCE826656838006D0B85 /* SearchMisic */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -110,8 +159,9 @@
 		E0E1D2A62034A36C0011E01A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				F8114FBF22A3E5D500102830 /* Model */,
 				F8A97B3622498F0C00FB2C0E /* View */,
-				F8114FBF22A3E5D500102830 /* Controller */,
+				8599CCE526656715006D0B85 /* Presenter */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -185,13 +235,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		F8114FBF22A3E5D500102830 /* Controller */ = {
+		F8114FBF22A3E5D500102830 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E0E1D2942034A3350011E01A /* SearchViewController.swift */,
 				F8114FC022A3E5EE00102830 /* AppCellModel.swift */,
 			);
-			path = Controller;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F8114FC222A3E74E00102830 /* View */ = {
@@ -199,6 +248,7 @@
 			children = (
 				F8114FC422A3E77500102830 /* AppDetailView.swift */,
 				854C904C2663B1FF003DA71A /* AppDetailHeaderView.swift */,
+				85F2FA67266430A000E32622 /* AppDetailDescriptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +258,7 @@
 			children = (
 				E0E1D3D0203C48D70011E01A /* AppDetailViewController.swift */,
 				854C904E2663B354003DA71A /* AppDetailHeaderViewController.swift */,
+				85F2FA63266412DB00E32622 /* AppDetailDescriptionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,6 +279,7 @@
 				F8A1E03E224850E500FE6448 /* Monads */,
 				E0E1D359203ADCE10011E01A /* NetworkManager */,
 				E0E1D3D2203C4A850011E01A /* Extensions */,
+				85F2FA6A266435ED00E32622 /* GlobalConstants.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -262,6 +314,7 @@
 		F8A97B3622498F0C00FB2C0E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0E1D2942034A3350011E01A /* SearchViewController.swift */,
 				F8114FBD22A3DBF400102830 /* SearchView.swift */,
 				F8A97B342249898E00FB2C0E /* AppCell.swift */,
 			);
@@ -352,18 +405,25 @@
 				F8A97B352249898E00FB2C0E /* AppCell.swift in Sources */,
 				F8114FC522A3E77500102830 /* AppDetailView.swift in Sources */,
 				E0E1D387203AE45F0011E01A /* WebRequest.swift in Sources */,
+				85F2FA68266430A000E32622 /* AppDetailDescriptionView.swift in Sources */,
 				F8A1E03C2248382F00FE6448 /* Monads.swift in Sources */,
 				854C904F2663B354003DA71A /* AppDetailHeaderViewController.swift in Sources */,
+				8599CCE4266560FC006D0B85 /* SearchPresenter.swift in Sources */,
+				8599CCE72665673D006D0B85 /* SearchViewProtocols.swift in Sources */,
 				E0E1D3D4203C4AA50011E01A /* UIColor+Extensions.swift in Sources */,
 				854C904D2663B1FF003DA71A /* AppDetailHeaderView.swift in Sources */,
 				E0E1D3D1203C48D70011E01A /* AppDetailViewController.swift in Sources */,
 				E0E1D358203ADC590011E01A /* NetworkManager.swift in Sources */,
+				85F2FA64266412DB00E32622 /* AppDetailDescriptionViewController.swift in Sources */,
+				85F2FA6B266435ED00E32622 /* GlobalConstants.swift in Sources */,
 				E0E1D39C203AE6420011E01A /* ITunesSong.swift in Sources */,
 				E0E1D2952034A3350011E01A /* SearchViewController.swift in Sources */,
 				E0E1D39F203AE7400011E01A /* ImageDownloader.swift in Sources */,
+				85F2FA662664178000E32622 /* StarRatingView.swift in Sources */,
 				F8114FBE22A3DBF400102830 /* SearchView.swift in Sources */,
 				E0E1D395203AE5E20011E01A /* ITunesSearchResult.swift in Sources */,
 				E0E1D392203AE58B0011E01A /* ITunesSearchService.swift in Sources */,
+				8599CCE22664FBFF006D0B85 /* SearchMisicViewController.swift in Sources */,
 				E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */,
 				E0E1D384203AE3620011E01A /* AppStartManager.swift in Sources */,
 				F8114FC122A3E5EE00102830 /* AppCellModel.swift in Sources */,
@@ -435,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -489,7 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

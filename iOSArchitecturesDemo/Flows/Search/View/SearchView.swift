@@ -28,16 +28,16 @@ final class SearchView: UIView {
   }()
   private(set) lazy var emptyResultView: UIView = {
     let emptyResultView = UIView()
-    emptyResultView.backgroundColor = Constants.backgroundColor
+    emptyResultView.backgroundColor = GlobalConstants.Color.background
     emptyResultView.isHidden = true
    return emptyResultView
   }()
   private(set) lazy var emptyResultLabel: UILabel = {
     let emptyResultLabel = UILabel()
-    emptyResultLabel.text = Constants.Text.text
-    emptyResultLabel.textColor = Constants.Text.textColor
+    emptyResultLabel.text = GlobalConstants.Text.nothingFound
+    emptyResultLabel.textColor = GlobalConstants.Color.subSubMain
     emptyResultLabel.textAlignment = .center
-    emptyResultLabel.font = Constants.Text.font
+    emptyResultLabel.font = GlobalConstants.Font.small
     return emptyResultLabel
   }()
   
@@ -58,18 +58,10 @@ final class SearchView: UIView {
 
 extension SearchView {
   private enum Constants {
-    static let backgroundColor: UIColor = .white
-    
     enum Table {
       static let rowHeight: CGFloat = 72
       static let separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
-    }
-    
-    enum Text {
-      static let text = "Nothing was found"
-      static let textColor = UIColor.darkGray
-      static let font = UIFont.systemFont(ofSize: 12.0)
-    }
+    }    
   }
 }
 
@@ -77,7 +69,7 @@ extension SearchView {
 
 extension SearchView {
   private func configureUI() {
-    backgroundColor = Constants.backgroundColor
+    backgroundColor = GlobalConstants.Color.background
     
     addSubview(searchBar)
     addSubview(tableView)

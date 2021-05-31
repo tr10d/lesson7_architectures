@@ -21,31 +21,36 @@ final class AppDetailHeaderView: UIView {
   }()
   private(set) lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .black
-    label.font = UIFont.boldSystemFont(ofSize: 20.0)
+    label.textColor = GlobalConstants.Color.main
+    label.font = GlobalConstants.Font.large
     label.numberOfLines = 2
     return label
   }()
   private(set) lazy var subtitleLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
-    label.font = UIFont.systemFont(ofSize: 14.0)
+    label.textColor = GlobalConstants.Color.subMain
+    label.font = GlobalConstants.Font.medium
     return label
   }()
   private(set) lazy var openButton: UIButton = {
     let button = UIButton(type: .system)
-    button.setTitle("Открыть", for: .normal)
-    button.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+    button.setTitle(GlobalConstants.Text.open, for: .normal)
+    button.backgroundColor = GlobalConstants.Color.button
     button.layer.cornerRadius = 16.0
     return button
   }()
   private(set) lazy var ratingLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
-    label.font = UIFont.boldSystemFont(ofSize: 20.0)
+    label.textColor = GlobalConstants.Color.subMain
+    label.font = GlobalConstants.Font.large
     return label
   }()
-  
+  private(set) lazy var ratingStar: StarRatingView = {
+    let stackView = StarRatingView()
+    stackView.starColor = GlobalConstants.Color.subMain
+    return stackView
+  }()
+
   // MARK: - Init
   
   override init(frame: CGRect) {
@@ -68,36 +73,44 @@ extension AppDetailHeaderView {
     addSubview(subtitleLabel)
     addSubview(openButton)
     addSubview(ratingLabel)
+    addSubview(ratingStar)
+    
     setupConstraints()
   }
   
   private func setupConstraints() {
+    let horizontal = GlobalConstants.Offset.horizontal
+    let vertical = GlobalConstants.Offset.vertical
+    
     imageView.snp.makeConstraints { make in
-      make.top.equalTo(safeAreaLayoutGuide).offset(12)
-      make.left.equalToSuperview().offset(16)
+      make.top.equalTo(safeAreaLayoutGuide).offset(vertical)
+      make.leading.equalToSuperview().offset(horizontal)
       make.width.height.equalTo(120)
     }
     titleLabel.snp.makeConstraints { make in
-      make.top.equalTo(safeAreaLayoutGuide).offset(12)
-      make.left.equalTo(imageView.snp.right).offset(16)
-      make.right.equalToSuperview().offset(-16)
+      make.top.equalTo(safeAreaLayoutGuide).offset(vertical)
+      make.leading.equalTo(imageView.snp.trailing).offset(horizontal)
+      make.trailing.equalToSuperview().offset(-horizontal)
     }
     subtitleLabel.snp.makeConstraints { make in
-      make.top.equalTo(titleLabel.snp.bottom).offset(12)
-      make.left.equalTo(titleLabel.snp.left)
-      make.right.equalTo(titleLabel.snp.right)
+      make.top.equalTo(titleLabel.snp.bottom).offset(vertical)
+      make.leading.equalTo(titleLabel.snp.leading)
+      make.trailing.equalTo(titleLabel.snp.trailing)
     }
     openButton.snp.makeConstraints { make in
-      make.left.equalTo(imageView.snp.right).offset(16)
+      make.leading.equalTo(imageView.snp.trailing).offset(horizontal)
       make.bottom.equalTo(imageView.snp.bottom)
       make.width.equalTo(80)
       make.height.equalTo(32)
     }
     ratingLabel.snp.makeConstraints { make in
-      make.top.equalTo(imageView.snp.bottom).offset(24)
-      make.left.equalTo(imageView.snp.left)
-      make.width.equalTo(100)
+      make.top.equalTo(imageView.snp.bottom).offset(vertical + vertical)
+      make.leading.equalTo(imageView.snp.leading)
       make.bottom.equalToSuperview()
+    }
+    ratingStar.snp.makeConstraints { make in
+      make.leading.equalTo(ratingLabel.snp.trailing).offset(vertical)
+      make.centerY.equalTo(ratingLabel.snp.centerY)
     }
   }
 }

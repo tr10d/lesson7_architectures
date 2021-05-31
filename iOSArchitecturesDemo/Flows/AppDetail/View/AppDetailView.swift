@@ -15,13 +15,13 @@ final class AppDetailView: UIView {
   
   private(set) lazy var imageView: UIImageView = {
     let imageView = UIImageView()
-    imageView.backgroundColor = Constants.Image.backgroundColor
-    imageView.layer.cornerRadius = Constants.Image.cornerRadius
+    imageView.backgroundColor = GlobalConstants.Color.subSubSubMain.withAlphaComponent(0.5)
+    imageView.layer.cornerRadius = GlobalConstants.cornerRadius
     imageView.layer.masksToBounds = true
     return imageView
   }()
   private(set) lazy var throbber: UIActivityIndicatorView = {
-    let activityIndicatorView = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
+    let activityIndicatorView = UIActivityIndicatorView(style: .medium)
     return activityIndicatorView
   }()
   
@@ -35,20 +35,6 @@ final class AppDetailView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     configureUI()
-  }
-}
-  
-// MARK: - Constants
-
-extension AppDetailView {
-  private enum Constants {
-    enum Image {
-      static let backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-      static let cornerRadius: CGFloat = 10.0
-    }
-    enum ActivityIndicator {
-      static let style: UIActivityIndicatorView.Style = .gray
-    }
   }
 }
 
