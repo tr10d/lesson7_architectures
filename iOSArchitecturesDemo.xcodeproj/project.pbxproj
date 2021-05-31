@@ -11,9 +11,10 @@
 		854C904F2663B354003DA71A /* AppDetailHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854C904E2663B354003DA71A /* AppDetailHeaderViewController.swift */; };
 		8595724B2663921A0002BB00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8595724A2663921A0002BB00 /* Alamofire */; };
 		8595724E266399B60002BB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8595724D266399B60002BB00 /* SnapKit */; };
-		8599CCE22664FBFF006D0B85 /* SearchMisicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */; };
+		8599CCE22664FBFF006D0B85 /* SearchMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE12664FBFF006D0B85 /* SearchMusicViewController.swift */; };
 		8599CCE4266560FC006D0B85 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE3266560FC006D0B85 /* SearchPresenter.swift */; };
 		8599CCE72665673D006D0B85 /* SearchViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCE62665673D006D0B85 /* SearchViewProtocols.swift */; };
+		8599CCEB26656A7C006D0B85 /* SearchMusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599CCEA26656A7C006D0B85 /* SearchMusicPresenter.swift */; };
 		85F2FA64266412DB00E32622 /* AppDetailDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA63266412DB00E32622 /* AppDetailDescriptionViewController.swift */; };
 		85F2FA662664178000E32622 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA652664178000E32622 /* StarRatingView.swift */; };
 		85F2FA68266430A000E32622 /* AppDetailDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2FA67266430A000E32622 /* AppDetailDescriptionView.swift */; };
@@ -42,9 +43,10 @@
 /* Begin PBXFileReference section */
 		854C904C2663B1FF003DA71A /* AppDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderView.swift; sourceTree = "<group>"; };
 		854C904E2663B354003DA71A /* AppDetailHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailHeaderViewController.swift; sourceTree = "<group>"; };
-		8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMisicViewController.swift; sourceTree = "<group>"; };
+		8599CCE12664FBFF006D0B85 /* SearchMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicViewController.swift; sourceTree = "<group>"; };
 		8599CCE3266560FC006D0B85 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		8599CCE62665673D006D0B85 /* SearchViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewProtocols.swift; sourceTree = "<group>"; };
+		8599CCEA26656A7C006D0B85 /* SearchMusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicPresenter.swift; sourceTree = "<group>"; };
 		85F2FA63266412DB00E32622 /* AppDetailDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailDescriptionViewController.swift; sourceTree = "<group>"; };
 		85F2FA652664178000E32622 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		85F2FA67266430A000E32622 /* AppDetailDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailDescriptionView.swift; sourceTree = "<group>"; };
@@ -94,20 +96,29 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		8599CCE826656838006D0B85 /* SearchMisic */ = {
+		8599CCE826656838006D0B85 /* SearchMusic */ = {
 			isa = PBXGroup;
 			children = (
 				8599CCE926656842006D0B85 /* View */,
+				8599CCEC26656A85006D0B85 /* Presenter */,
 			);
-			path = SearchMisic;
+			path = SearchMusic;
 			sourceTree = "<group>";
 		};
 		8599CCE926656842006D0B85 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8599CCE12664FBFF006D0B85 /* SearchMisicViewController.swift */,
+				8599CCE12664FBFF006D0B85 /* SearchMusicViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8599CCEC26656A85006D0B85 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8599CCEA26656A7C006D0B85 /* SearchMusicPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		85F2FA69266435C100E32622 /* Stars */ = {
@@ -151,7 +162,7 @@
 				E0E1D2A62034A36C0011E01A /* Search */,
 				E0E1D2A72034A3780011E01A /* AppDetail */,
 				85F2FA69266435C100E32622 /* Stars */,
-				8599CCE826656838006D0B85 /* SearchMisic */,
+				8599CCE826656838006D0B85 /* SearchMusic */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -406,6 +417,7 @@
 				F8114FC522A3E77500102830 /* AppDetailView.swift in Sources */,
 				E0E1D387203AE45F0011E01A /* WebRequest.swift in Sources */,
 				85F2FA68266430A000E32622 /* AppDetailDescriptionView.swift in Sources */,
+				8599CCEB26656A7C006D0B85 /* SearchMusicPresenter.swift in Sources */,
 				F8A1E03C2248382F00FE6448 /* Monads.swift in Sources */,
 				854C904F2663B354003DA71A /* AppDetailHeaderViewController.swift in Sources */,
 				8599CCE4266560FC006D0B85 /* SearchPresenter.swift in Sources */,
@@ -423,7 +435,7 @@
 				F8114FBE22A3DBF400102830 /* SearchView.swift in Sources */,
 				E0E1D395203AE5E20011E01A /* ITunesSearchResult.swift in Sources */,
 				E0E1D392203AE58B0011E01A /* ITunesSearchService.swift in Sources */,
-				8599CCE22664FBFF006D0B85 /* SearchMisicViewController.swift in Sources */,
+				8599CCE22664FBFF006D0B85 /* SearchMusicViewController.swift in Sources */,
 				E0E1D2932034A3350011E01A /* AppDelegate.swift in Sources */,
 				E0E1D384203AE3620011E01A /* AppStartManager.swift in Sources */,
 				F8114FC122A3E5EE00102830 /* AppCellModel.swift in Sources */,

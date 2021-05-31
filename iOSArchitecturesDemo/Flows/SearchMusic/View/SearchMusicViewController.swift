@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SearchMisicViewController: UIViewController {
+final class SearchMusicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

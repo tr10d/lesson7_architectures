@@ -37,8 +37,8 @@ class AppStartManagerFactory {
     return vc
   }
   
-  static func musicVC() -> SearchMisicViewController {
-    let vc = SearchMisicViewController()
+  static func musicVC() -> SearchMusicViewController {
+    let vc = SearchMusicViewController()
     vc.navigationItem.title = GlobalConstants.Text.musicSearch
     return vc
   }
