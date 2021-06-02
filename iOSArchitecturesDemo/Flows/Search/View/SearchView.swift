@@ -7,88 +7,93 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SearchView: UIView {
-    
-    // MARK: - Subviews
-    
+  
+  // MARK: - Subviews
+  
+  private(set) lazy var searchBar: UISearchBar = {
     let searchBar = UISearchBar()
+    searchBar.searchBarStyle = .minimal
+    return searchBar
+  }()
+  private(set) lazy var tableView: UITableView = {
     let tableView = UITableView()
+    tableView.rowHeight = Constants.Table.rowHeight
+    tableView.separatorInset = Constants.Table.separatorInset
+    tableView.isHidden = true
+    tableView.tableFooterView = UIView()
+    return tableView
+  }()
+  private(set) lazy var emptyResultView: UIView = {
     let emptyResultView = UIView()
+    emptyResultView.backgroundColor = GlobalConstants.Color.background
+    emptyResultView.isHidden = true
+   return emptyResultView
+  }()
+  private(set) lazy var emptyResultLabel: UILabel = {
     let emptyResultLabel = UILabel()
+    emptyResultLabel.text = GlobalConstants.Text.nothingFound
+    emptyResultLabel.textColor = GlobalConstants.Color.subSubMain
+    emptyResultLabel.textAlignment = .center
+    emptyResultLabel.font = GlobalConstants.Font.small
+    return emptyResultLabel
+  }()
+  
+  // MARK: - Init
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    configureUI()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    configureUI()
+  }
+}
+
+// MARK: - Constants
+
+extension SearchView {
+  private enum Constants {
+    enum Table {
+      static let rowHeight: CGFloat = 72
+      static let separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
+    }    
+  }
+}
+
+// MARK: - UI
+
+extension SearchView {
+  private func configureUI() {
+    backgroundColor = GlobalConstants.Color.background
     
-    // MARK: - Init
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.configureUI()
+    addSubview(searchBar)
+    addSubview(tableView)
+    addSubview(emptyResultView)
+    emptyResultView.addSubview(emptyResultLabel)
+    setupConstraints()
+  }
+  
+  private func setupConstraints() {
+    searchBar.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(8)
+      make.leading.trailing.equalTo(safeAreaLayoutGuide)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.configureUI()
+    tableView.snp.makeConstraints { make in
+      make.top.equalTo(searchBar.snp.bottom)
+      make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
     }
-    
-    // MARK: - UI
-    
-    private func configureUI() {
-        self.backgroundColor = .white
-        self.addSearchBar()
-        self.addTableView()
-        self.addEmptyResultView()
-        self.setupConstraints()
+    emptyResultView.snp.makeConstraints { make in
+      make.top.equalTo(searchBar.snp.bottom)
+      make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
     }
-    
-    private func addSearchBar() {
-        self.searchBar.translatesAutoresizingMaskIntoConstraints = false
-        self.searchBar.searchBarStyle = .minimal
-        self.addSubview(self.searchBar)
+    emptyResultLabel.snp.makeConstraints { make in
+      make.top.equalTo(emptyResultView.snp.top).offset(12)
+      make.leading.trailing.equalTo(emptyResultView)
     }
-    
-    private func addTableView() {
-        self.tableView.rowHeight = 72.0
-        self.tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 12.0, bottom: 0.0, right: 0.0)
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.isHidden = true
-        self.tableView.tableFooterView = UIView()
-        self.addSubview(self.tableView)
-    }
-    
-    private func addEmptyResultView() {
-        self.emptyResultView.translatesAutoresizingMaskIntoConstraints = false
-        self.emptyResultView.backgroundColor = .white
-        self.emptyResultView.isHidden = true
-        
-        self.emptyResultLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.emptyResultLabel.text = "Nothing was found"
-        self.emptyResultLabel.textColor = UIColor.darkGray
-        self.emptyResultLabel.textAlignment = .center
-        self.emptyResultLabel.font = UIFont.systemFont(ofSize: 12.0)
-        
-        self.addSubview(self.emptyResultView)
-        self.emptyResultView.addSubview(self.emptyResultLabel)
-    }
-    
-    private func setupConstraints() {
-        let safeArea = self.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            self.searchBar.topAnchor.constraint(equalTo: self.topAnchor, constant: 8.0),
-            self.searchBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.searchBar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            
-            self.tableView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor),
-            self.tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            
-            self.emptyResultView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor),
-            self.emptyResultView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            self.emptyResultView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            self.emptyResultView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            self.emptyResultLabel.topAnchor.constraint(equalTo: self.emptyResultView.topAnchor, constant: 12.0),
-            self.emptyResultLabel.leadingAnchor.constraint(equalTo: self.emptyResultView.leadingAnchor),
-            self.emptyResultLabel.trailingAnchor.constraint(equalTo: self.emptyResultView.trailingAnchor)
-            ])
-    }
+  }
 }
