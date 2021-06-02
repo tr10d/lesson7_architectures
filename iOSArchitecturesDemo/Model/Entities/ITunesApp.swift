@@ -21,6 +21,7 @@ public struct ITunesApp: Codable {
   public let averageRatingForCurrentVersion: Float?
   public let size: Bytes?
   public let iconUrl: String?
+  public let iconUrlMini: String?
   public let screenshotUrls: [String]
   public let version: String?
   public let releaseNotes: String?
@@ -38,6 +39,7 @@ public struct ITunesApp: Codable {
     case averageRatingForCurrentVersion = "averageUserRatingForCurrentVersion"
     case size = "fileSizeBytes"
     case iconUrl = "artworkUrl512"
+    case iconUrlMini = "artworkUrl60"
     case screenshotUrls = "screenshotUrls"
     case version = "version"
     case releaseNotes = "releaseNotes"
@@ -55,6 +57,7 @@ public struct ITunesApp: Codable {
     self.averageRatingForCurrentVersion = (try? container.decode(Float.self, forKey: .averageRatingForCurrentVersion)) >>- { round($0 * 10) / 10 }
     self.size = (try? container.decode(String.self, forKey: .size)) >>- { Bytes($0) }
     self.iconUrl = try? container.decode(String.self, forKey: .iconUrl)
+    self.iconUrlMini = try? container.decode(String.self, forKey: .iconUrlMini)
     self.screenshotUrls = (try? container.decode([String].self, forKey: .screenshotUrls)) ?? []
     self.version = try? container.decode(String.self, forKey: .version)
     self.releaseNotes = try? container.decode(String.self, forKey: .releaseNotes)
@@ -72,6 +75,7 @@ public struct ITunesApp: Codable {
                 averageRatingForCurrentVersion: Float?,
                 size: Bytes?,
                 iconUrl: String?,
+                iconUrlMini: String?,
                 screenshotUrls: [String],
                 version: String?,
                 releaseNotes: String?,
@@ -85,6 +89,7 @@ public struct ITunesApp: Codable {
     self.averageRatingForCurrentVersion = averageRatingForCurrentVersion
     self.size = size
     self.iconUrl = iconUrl
+    self.iconUrlMini = iconUrlMini
     self.screenshotUrls = screenshotUrls
     self.version = version
     self.releaseNotes = releaseNotes

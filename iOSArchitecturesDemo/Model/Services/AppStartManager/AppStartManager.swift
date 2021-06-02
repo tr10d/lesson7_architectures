@@ -16,55 +16,14 @@ final class AppStartManager {
   }
   
   func start() {
-    let softwareVC = AppStartManagerFactory.softwareVC()
-    let musicVC = AppStartManagerFactory.musicVC()
-    let softwareNavigationVC = AppStartManagerFactory.navigationVC(title: GlobalConstants.Text.apps, image: GlobalConstants.Text.appsImageName, viewControllers: [softwareVC])
-    let musicNavigationVC = AppStartManagerFactory.navigationVC(title: GlobalConstants.Text.music, image: GlobalConstants.Text.musicImageName, viewControllers: [musicVC])
+    let softwareVC = AppFactory.softwareVC()
+    let musicVC = AppFactory.musicVC()
+    let softwareNavigationVC = AppFactory.navigationVC(title: GlobalConstants.Text.apps, image: GlobalConstants.Text.appsImageName, viewController: softwareVC)
+    let musicNavigationVC = AppFactory.navigationVC(title: GlobalConstants.Text.music, image: GlobalConstants.Text.musicImageName, viewController: musicVC)
     
-    let tabBarController = AppStartManagerFactory.tabBarVC(viewControllers: [softwareNavigationVC, musicNavigationVC])
+    let tabBarController = AppFactory.tabBarVC(viewControllers: [softwareNavigationVC, musicNavigationVC])
     
     window?.rootViewController = tabBarController
     window?.makeKeyAndVisible()
   }
 }
-
-class AppStartManagerFactory {
-  static func softwareVC() -> SearchViewController {
-    let presenter = SearchPresenter()
-    let vc = SearchViewController(presenter: presenter)
-    presenter.viewInput = vc
-    vc.navigationItem.title = GlobalConstants.Text.appsSearch
-    return vc
-  }
-  
-  static func musicVC() -> SearchMusicViewController {
-    let vc = SearchMusicViewController()
-    vc.navigationItem.title = GlobalConstants.Text.musicSearch
-    return vc
-  }
-
-  static func navigationVC(title: String, image: String, viewControllers: [UIViewController]) -> UINavigationController {
-    let vc = UINavigationController()
-    vc.navigationBar.barTintColor = .varna
-    vc.navigationBar.isTranslucent = false
-    vc.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: GlobalConstants.Color.background]
-    vc.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: GlobalConstants.Color.background]
-    vc.tabBarItem = tabBarItem(title: title, image: image)
-    vc.viewControllers = viewControllers
-    return vc
-  }
-  
-  static func tabBarVC(viewControllers: [UIViewController]) -> UITabBarController {
-    let tabBarController = UITabBarController()
-    tabBarController.viewControllers = viewControllers
-    return tabBarController
-  }
-  
-  static func tabBarItem(title: String, image: String) -> UITabBarItem {
-    let item = UITabBarItem()
-    item.title = title
-    item.image = UIImage(named: image)
-    return item
-  }
-}
-

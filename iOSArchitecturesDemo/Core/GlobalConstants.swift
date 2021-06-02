@@ -10,7 +10,8 @@ import UIKit
 
 enum GlobalConstants {
   static let cornerRadius: CGFloat = 10.0
-
+  static let iconTableSize = 60
+  
   enum Color {
     static let main: UIColor = .black
     static let subMain: UIColor = .lightGray
@@ -46,5 +47,6 @@ enum GlobalConstants {
   enum Offset {
     static let horizontal: Int = 16
     static let vertical: Int = 12
- }
+    static let verticalSmall: Int = 4
+  }
 }

@@ -9,6 +9,7 @@
 import Foundation
 
 struct AppCellModel {
+  let icon: String
   let title: String
   let subtitle: String?
   let rating: String?
@@ -18,7 +19,8 @@ struct AppCellModel {
 final class AppCellModelFactory {
   
   static func cellModel(from model: ITunesApp) -> AppCellModel {
-    return AppCellModel(title: model.appName,
+    return AppCellModel(icon: model.iconUrlMini ?? "",
+                        title: model.appName,
                         subtitle: model.company,
                         rating: model.averageRating >>- { "\($0)" },
                         ratingForStar: model.averageRating ?? 0)

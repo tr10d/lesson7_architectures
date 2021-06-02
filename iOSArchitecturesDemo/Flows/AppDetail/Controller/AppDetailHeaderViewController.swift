@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class AppDetailHeaderViewController: UIViewController {
   
   // MARK: - Properties
   
   private let app: ITunesApp
-  private let imageDownloader = ImageDownloader()
   private var appDetailHeaderView: AppDetailHeaderView {
     return self.view as! AppDetailHeaderView
   }
@@ -53,8 +53,6 @@ final class AppDetailHeaderViewController: UIViewController {
   
   private func downloadImage() {
     guard let url = self.app.iconUrl else { return }
-    imageDownloader.getImage(fromUrl: url) { [weak self] (image, _) in
-      self?.appDetailHeaderView.imageView.image = image
-    }
+    appDetailHeaderView.imageView.kf.setImage(with: URL(string: url))
   }
 }

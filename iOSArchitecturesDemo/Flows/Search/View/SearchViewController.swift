@@ -12,10 +12,13 @@ final class SearchViewController: UIViewController {
   
   // MARK: - Private Properties
   
+  private let presenter: SearchViewOutput
   private var searchView: SearchView {
     return self.view as! SearchView
   }
-  private let searchService = ITunesSearchService()
+
+  // MARK: - Public Properties
+  
   var searchResults = [ITunesApp]() {
     didSet {
       searchView.tableView.isHidden = false
@@ -23,7 +26,6 @@ final class SearchViewController: UIViewController {
       searchView.searchBar.resignFirstResponder()
     }
   }
-  private let presenter: SearchViewOutput
   
   init(presenter: SearchViewOutput) {
     self.presenter = presenter
@@ -63,11 +65,10 @@ extension SearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: AppCell.description(), for: indexPath)
-    guard let cell = dequeuedCell as? AppCell else {
-      return dequeuedCell
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: AppCell.description(), for: indexPath) as? AppCell else {
+      fatalError("dequeueReusableCell(withIdentifier:) unexpected Index Path")
     }
-    let app = self.searchResults[indexPath.row]
+    let app = searchResults[indexPath.row]
     let cellModel = AppCellModelFactory.cellModel(from: app)
     cell.configure(with: cellModel)
     return cell
@@ -88,11 +89,8 @@ extension SearchViewController: UITableViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    guard let query = searchBar.text else {
-      searchBar.resignFirstResponder()
-      return
-    }
-    if query.count == 0 {
+    guard let query = searchBar.text,
+          !query.isEmpty else {
       searchBar.resignFirstResponder()
       return
     }
@@ -101,6 +99,7 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 // MARK: - Input
+
 extension SearchViewController: SearchViewInput {
   func showError(error: Error) {
     let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
